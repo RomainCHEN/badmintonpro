@@ -1,20 +1,38 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# BadmintonPro
 
-# Run and deploy your AI Studio app
+羽毛球电商平台 - Badminton E-commerce Platform
 
-This contains everything you need to run your app locally.
+## Features
 
-View your app in AI Studio: https://ai.studio/apps/drive/1pFfSlJ-w3AFEigs6ndon8Mr2VYVLR9N4
+- 🏸 Product catalog with category-specific filters (Rackets, Footwear, Apparel, Accessories)
+- 🔍 Advanced search and filtering
+- 🛒 Shopping cart functionality
+- ❤️ Wishlist management
+- 🌐 Bilingual support (English / 中文)
+- 🌙 Dark mode
+- 👨‍💼 Admin panel for inventory management
+
+## Tech Stack
+
+- React + TypeScript
+- Vite
+- TailwindCSS
+- Supabase (Backend)
 
 ## Run Locally
 
-**Prerequisites:**  Node.js
-
+**Prerequisites:** Node.js
 
 1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+   ```bash
+   npm install
+   ```
+
+2. Run the app:
+   ```bash
+   npm run dev
+   ```
+
+## License
+
+MIT
