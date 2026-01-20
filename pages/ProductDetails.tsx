@@ -6,7 +6,7 @@ import { getProductById } from '../services/productService';
 import { getReviewsByProductId, createReview } from '../services/reviewService';
 import { getProductImages } from '../services/imageService';
 import { Product, Review, ProductImage } from '../types';
-import { PRODUCTS, REVIEWS } from '../constants';
+import { PRODUCTS } from '../constants';
 
 const ProductDetails: React.FC = () => {
     const { id } = useParams();
@@ -36,7 +36,7 @@ const ProductDetails: React.FC = () => {
                     getProductImages(id, productData?.image)
                 ]);
 
-                setReviews(reviewsData.length > 0 ? reviewsData : REVIEWS);
+                setReviews(reviewsData);
 
                 // If images loaded from service, use them; otherwise create from product image
                 if (imagesData.length > 0) {
@@ -225,8 +225,8 @@ const ProductDetails: React.FC = () => {
                             </label>
                         )}
 
-                        {/* Shoes: Size */}
-                        {product.category === 'Shoes' && (
+                        {/* Footwear: Size */}
+                        {product.category === 'Footwear' && (
                             <label className="flex flex-col gap-2">
                                 <span className="text-sm font-bold text-[#0d141b] dark:text-white">
                                     {language === 'cn' ? '尺码' : 'Size (US)'}

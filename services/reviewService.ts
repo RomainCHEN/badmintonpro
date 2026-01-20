@@ -1,6 +1,6 @@
 import { supabase, isSupabaseConfigured } from '../lib/supabaseClient';
 import { Review } from '../types';
-import { REVIEWS } from '../constants';
+import { REVIEWS, PRODUCT_REVIEWS } from '../constants';
 
 // Avatar color options
 const AVATAR_COLORS = [
@@ -40,9 +40,17 @@ const formatRelativeDate = (date: Date): string => {
 
 // Get reviews for a product
 export const getReviewsByProductId = async (productId: string): Promise<Review[]> => {
+    // Get product-specific mock reviews
+    let mockReviews = PRODUCT_REVIEWS[productId] || [];
+
+    // Generate fallback reviews if none exist for this product
+    if (mockReviews.length === 0) {
+        mockReviews = generateFallbackReviews(productId);
+    }
+
     if (!isSupabaseConfigured()) {
         console.log('[ReviewService] Using mock data - Supabase not configured');
-        return REVIEWS;
+        return deduplicateReviews(mockReviews);
     }
 
     try {
@@ -54,16 +62,59 @@ export const getReviewsByProductId = async (productId: string): Promise<Review[]
 
         if (error) throw error;
 
-        // Return mock data if no reviews found
+        // Return product-specific mock data if no reviews found in database
         if (!data || data.length === 0) {
-            return REVIEWS;
+            return deduplicateReviews(mockReviews);
         }
 
-        return data.map(mapDbReviewToReview);
+        // Deduplicate database reviews (in case of duplicate inserts)
+        const reviews = data.map(mapDbReviewToReview);
+        return deduplicateReviews(reviews);
     } catch (error) {
         console.error('[ReviewService] Error fetching reviews:', error);
-        return REVIEWS; // Fallback to mock data
+        return deduplicateReviews(mockReviews); // Fallback to product-specific mock data
     }
+};
+
+// Remove duplicate reviews based on user name and text content
+const deduplicateReviews = (reviews: Review[]): Review[] => {
+    const seen = new Set<string>();
+    return reviews.filter(review => {
+        // Create a unique key from user name and first 50 chars of text
+        const key = `${review.user}-${review.text.substring(0, 50)}`;
+        if (seen.has(key)) {
+            return false;
+        }
+        seen.add(key);
+        return true;
+    });
+};
+
+// Generate fallback reviews for products without predefined reviews
+const generateFallbackReviews = (productId: string): Review[] => {
+    const fallbackAvatarColors = AVATAR_COLORS;
+
+    // Generate 2 mock reviews with realistic ratings (4-5 stars)
+    return [
+        {
+            id: `fallback-${productId}-1`,
+            user: 'Happy Customer',
+            avatarColor: fallbackAvatarColors[Math.floor(Math.random() * fallbackAvatarColors.length)],
+            verified: true,
+            date: '1 week ago',
+            rating: 5,
+            text: 'Great product! Exactly what I was looking for. Fast shipping and excellent quality. Would definitely recommend to other badminton players.',
+        },
+        {
+            id: `fallback-${productId}-2`,
+            user: 'Badminton Fan',
+            avatarColor: fallbackAvatarColors[Math.floor(Math.random() * fallbackAvatarColors.length)],
+            verified: true,
+            date: '2 weeks ago',
+            rating: 4,
+            text: 'Good value for money. The product meets my expectations. BadmintonPro has a nice selection and customer service was helpful.',
+        },
+    ];
 };
 
 // Create a new review

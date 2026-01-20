@@ -204,36 +204,134 @@ export const PRODUCTS: Product[] = [
   }
 ];
 
+// Product-specific reviews - each product has its own reviews
+// Keys match both simple IDs (for mock mode) and UUID format (for Supabase)
+export const PRODUCT_REVIEWS: Record<string, Review[]> = {
+  // Astrox 99 Pro - Product ID: 1 / 11111111-1111-1111-1111-111111111111
+  "1": [
+    { id: "1-1", user: "John D.", avatarColor: "bg-primary/20 text-primary", verified: true, date: "2 days ago", rating: 5, text: "Incredible power on smashes. The control is slightly tricky at first, but once you get used to it, it's a beast on the court. Highly recommend for singles players." },
+    { id: "1-2", user: "Sarah L.", avatarColor: "bg-purple-100 text-purple-600", verified: true, date: "1 week ago", rating: 5, text: "The racket feels amazing, very stiff and responsive. The paint job looks even better in person. Delivery was super fast too!" },
+    { id: "1-3", user: "Mike K.", avatarColor: "bg-green-100 text-green-600", verified: true, date: "2 weeks ago", rating: 5, text: "Upgrade from the Astrox 88D. Definitely feels heavier on the head but the smashes are noticeably more powerful. Great service from BadmintonPro." },
+  ],
+  "11111111-1111-1111-1111-111111111111": [
+    { id: "uuid1-1", user: "John D.", avatarColor: "bg-primary/20 text-primary", verified: true, date: "2 days ago", rating: 5, text: "Incredible power on smashes. The control is slightly tricky at first, but once you get used to it, it's a beast on the court. Highly recommend for singles players." },
+    { id: "uuid1-2", user: "Sarah L.", avatarColor: "bg-purple-100 text-purple-600", verified: true, date: "1 week ago", rating: 5, text: "The racket feels amazing, very stiff and responsive. The paint job looks even better in person. Delivery was super fast too!" },
+    { id: "uuid1-3", user: "Mike K.", avatarColor: "bg-green-100 text-green-600", verified: true, date: "2 weeks ago", rating: 5, text: "Upgrade from the Astrox 88D. Definitely feels heavier on the head but the smashes are noticeably more powerful. Great service from BadmintonPro." },
+  ],
+  // Thruster F Claw - Product ID: 2 / 22222222-2222-2222-2222-222222222222
+  "2": [
+    { id: "2-1", user: "Alex W.", avatarColor: "bg-blue-100 text-blue-600", verified: true, date: "3 days ago", rating: 5, text: "Victor's best racket for smashing! The head-heavy balance gives incredible power. Perfect for attacking players." },
+    { id: "2-2", user: "Chen Wei", avatarColor: "bg-orange-100 text-orange-600", verified: true, date: "1 week ago", rating: 4, text: "重头设计非常适合杀球，力量感十足。价格也很合理，推荐给进攻型选手。" },
+  ],
+  "22222222-2222-2222-2222-222222222222": [
+    { id: "uuid2-1", user: "Alex W.", avatarColor: "bg-blue-100 text-blue-600", verified: true, date: "3 days ago", rating: 5, text: "Victor's best racket for smashing! The head-heavy balance gives incredible power. Perfect for attacking players." },
+    { id: "uuid2-2", user: "Chen Wei", avatarColor: "bg-orange-100 text-orange-600", verified: true, date: "1 week ago", rating: 4, text: "重头设计非常适合杀球，力量感十足。价格也很合理，推荐给进攻型选手。" },
+  ],
+  // Power Cushion 65 Z - Product ID: 3 / 33333333-3333-3333-3333-333333333333
+  "3": [
+    { id: "3-1", user: "Emily R.", avatarColor: "bg-pink-100 text-pink-600", verified: true, date: "1 day ago", rating: 5, text: "Best badminton shoes I've ever owned! The cushioning is incredible - no more knee pain after long matches. Worth every penny." },
+    { id: "3-2", user: "David K.", avatarColor: "bg-blue-100 text-blue-600", verified: true, date: "5 days ago", rating: 4, text: "Excellent grip on the court. Took a few sessions to break in but now they're super comfortable. True to size." },
+  ],
+  "33333333-3333-3333-3333-333333333333": [
+    { id: "uuid3-1", user: "Emily R.", avatarColor: "bg-pink-100 text-pink-600", verified: true, date: "1 day ago", rating: 5, text: "Best badminton shoes I've ever owned! The cushioning is incredible - no more knee pain after long matches. Worth every penny." },
+    { id: "uuid3-2", user: "David K.", avatarColor: "bg-blue-100 text-blue-600", verified: true, date: "5 days ago", rating: 4, text: "Excellent grip on the court. Took a few sessions to break in but now they're super comfortable. True to size." },
+  ],
+  // Aerosensa 50 - Product ID: 4 / 44444444-4444-4444-4444-444444444444
+  "4": [
+    { id: "4-1", user: "James P.", avatarColor: "bg-green-100 text-green-600", verified: true, date: "1 day ago", rating: 5, text: "Tournament quality shuttles at a reasonable price. Flight is consistent and they last longer than most feather shuttles. Our club now orders these exclusively." },
+    { id: "4-2", user: "Wang Li", avatarColor: "bg-orange-100 text-orange-600", verified: true, date: "4 days ago", rating: 5, text: "非常好的羽毛球！飞行稳定，耐用度也不错。比赛训练都很合适。" },
+  ],
+  "44444444-4444-4444-4444-444444444444": [
+    { id: "uuid4-1", user: "James P.", avatarColor: "bg-green-100 text-green-600", verified: true, date: "1 day ago", rating: 5, text: "Tournament quality shuttles at a reasonable price. Flight is consistent and they last longer than most feather shuttles. Our club now orders these exclusively." },
+    { id: "uuid4-2", user: "Wang Li", avatarColor: "bg-orange-100 text-orange-600", verified: true, date: "4 days ago", rating: 5, text: "非常好的羽毛球！飞行稳定，耐用度也不错。比赛训练都很合适。" },
+  ],
+  // Aeronaut 9000 Combat - Product ID: 5 / 55555555-5555-5555-5555-555555555555
+  "5": [
+    { id: "5-1", user: "Zhang Ming", avatarColor: "bg-primary/20 text-primary", verified: true, date: "2 days ago", rating: 5, text: "李宁的这款球拍非常全面，攻守兼备。碳纤维材质手感极佳，值得推荐！" },
+    { id: "5-2", user: "Ryan T.", avatarColor: "bg-purple-100 text-purple-600", verified: true, date: "1 week ago", rating: 4, text: "Great all-round racket from Li-Ning. Not as head-heavy as the Yonex Astrox series but offers better control for defensive play." },
+  ],
+  "55555555-5555-5555-5555-555555555555": [
+    { id: "uuid5-1", user: "Zhang Ming", avatarColor: "bg-primary/20 text-primary", verified: true, date: "2 days ago", rating: 5, text: "李宁的这款球拍非常全面，攻守兼备。碳纤维材质手感极佳，值得推荐！" },
+    { id: "uuid5-2", user: "Ryan T.", avatarColor: "bg-purple-100 text-purple-600", verified: true, date: "1 week ago", rating: 4, text: "Great all-round racket from Li-Ning. Not as head-heavy as the Yonex Astrox series but offers better control for defensive play." },
+  ],
+  // Nanoflare 800 LT - Product ID: 6 / 66666666-6666-6666-6666-666666666666
+  "6": [
+    { id: "6-1", user: "Sophie H.", avatarColor: "bg-pink-100 text-pink-600", verified: true, date: "3 days ago", rating: 5, text: "So light and fast! Perfect for quick reactions at the net. The 5U weight really makes a difference in fast doubles games." },
+    { id: "6-2", user: "Lin Xiaoming", avatarColor: "bg-orange-100 text-orange-600", verified: true, date: "1 week ago", rating: 5, text: "疾光800真的很轻，挥速极快。适合双打前场选手，强烈推荐！" },
+  ],
+  "66666666-6666-6666-6666-666666666666": [
+    { id: "uuid6-1", user: "Sophie H.", avatarColor: "bg-pink-100 text-pink-600", verified: true, date: "3 days ago", rating: 5, text: "So light and fast! Perfect for quick reactions at the net. The 5U weight really makes a difference in fast doubles games." },
+    { id: "uuid6-2", user: "Lin Xiaoming", avatarColor: "bg-orange-100 text-orange-600", verified: true, date: "1 week ago", rating: 5, text: "疾光800真的很轻，挥速极快。适合双打前场选手，强烈推荐！" },
+  ],
+  // Arcsaber 11 Pro - Product ID: 7 / 77777777-7777-7777-7777-777777777777
+  "7": [
+    { id: "7-1", user: "Andrew Z.", avatarColor: "bg-primary/20 text-primary", verified: true, date: "1 day ago", rating: 5, text: "The precision and control on this racket is unmatched. Perfect for placing shots exactly where you want them. Worth every dollar!" },
+    { id: "7-2", user: "Rachel K.", avatarColor: "bg-purple-100 text-purple-600", verified: true, date: "3 days ago", rating: 5, text: "Best racket for all-round play. Great balance between power and control. The even-balance design is perfect for my playing style." },
+    { id: "7-3", user: "Liu Yang", avatarColor: "bg-green-100 text-green-600", verified: true, date: "1 week ago", rating: 5, text: "弓剑系列一直是控制型球拍的标杆，这款Pro更是精品中的精品！" },
+  ],
+  "77777777-7777-7777-7777-777777777777": [
+    { id: "uuid7-1", user: "Andrew Z.", avatarColor: "bg-primary/20 text-primary", verified: true, date: "1 day ago", rating: 5, text: "The precision and control on this racket is unmatched. Perfect for placing shots exactly where you want them. Worth every dollar!" },
+    { id: "uuid7-2", user: "Rachel K.", avatarColor: "bg-purple-100 text-purple-600", verified: true, date: "3 days ago", rating: 5, text: "Best racket for all-round play. Great balance between power and control. The even-balance design is perfect for my playing style." },
+    { id: "uuid7-3", user: "Liu Yang", avatarColor: "bg-green-100 text-green-600", verified: true, date: "1 week ago", rating: 5, text: "弓剑系列一直是控制型球拍的标杆，这款Pro更是精品中的精品！" },
+  ],
+  // Auraspeed 90K Metallic - Product ID: 8 / 88888888-8888-8888-8888-888888888888
+  "8": [
+    { id: "8-1", user: "Brian C.", avatarColor: "bg-blue-100 text-blue-600", verified: true, date: "4 days ago", rating: 5, text: "Victor's response to the Nanoflare series. Super quick racket with good punch. The metallic finish looks stunning!" },
+    { id: "8-2", user: "Jessica W.", avatarColor: "bg-pink-100 text-pink-600", verified: true, date: "1 week ago", rating: 4, text: "Fast and responsive. Great for quick exchanges at the net. Slightly less powerful than my old Thruster but much faster." },
+  ],
+  "88888888-8888-8888-8888-888888888888": [
+    { id: "uuid8-1", user: "Brian C.", avatarColor: "bg-blue-100 text-blue-600", verified: true, date: "4 days ago", rating: 5, text: "Victor's response to the Nanoflare series. Super quick racket with good punch. The metallic finish looks stunning!" },
+    { id: "uuid8-2", user: "Jessica W.", avatarColor: "bg-pink-100 text-pink-600", verified: true, date: "1 week ago", rating: 4, text: "Fast and responsive. Great for quick exchanges at the net. Slightly less powerful than my old Thruster but much faster." },
+  ],
+  // Li-Ning Ranger VI - Product ID: 9 / 99999999-9999-9999-9999-999999999999
+  "9": [
+    { id: "9-1", user: "Amanda G.", avatarColor: "bg-purple-100 text-purple-600", verified: true, date: "2 days ago", rating: 5, text: "Love the blue color! Great grip on court and excellent ankle support. Perfect for intense matches. Very comfortable right out of the box." },
+    { id: "9-2", user: "Zhou Chen", avatarColor: "bg-green-100 text-green-600", verified: true, date: "1 week ago", rating: 4, text: "李宁的鞋子质量一如既往的好，这款突击6代脚踝支撑做得很到位。蓝色很好看。" },
+  ],
+  "99999999-9999-9999-9999-999999999999": [
+    { id: "uuid9-1", user: "Amanda G.", avatarColor: "bg-purple-100 text-purple-600", verified: true, date: "2 days ago", rating: 5, text: "Love the blue color! Great grip on court and excellent ankle support. Perfect for intense matches. Very comfortable right out of the box." },
+    { id: "uuid9-2", user: "Zhou Chen", avatarColor: "bg-green-100 text-green-600", verified: true, date: "1 week ago", rating: 4, text: "李宁的鞋子质量一如既往的好，这款突击6代脚踝支撑做得很到位。蓝色很好看。" },
+  ],
+  // Li-Ning Team Jersey - Product ID: 10 / aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+  "10": [
+    { id: "10-1", user: "Nancy L.", avatarColor: "bg-pink-100 text-pink-600", verified: true, date: "5 days ago", rating: 4, text: "Nice breathable fabric, keeps me cool during long matches. True to size and the color hasn't faded after multiple washes." },
+    { id: "10-2", user: "Robert J.", avatarColor: "bg-blue-100 text-blue-600", verified: true, date: "2 weeks ago", rating: 4, text: "Good quality team jersey at a reasonable price. Ordered for our club and everyone is happy with them." },
+  ],
+  "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa": [
+    { id: "uuida-1", user: "Nancy L.", avatarColor: "bg-pink-100 text-pink-600", verified: true, date: "5 days ago", rating: 4, text: "Nice breathable fabric, keeps me cool during long matches. True to size and the color hasn't faded after multiple washes." },
+    { id: "uuida-2", user: "Robert J.", avatarColor: "bg-blue-100 text-blue-600", verified: true, date: "2 weeks ago", rating: 4, text: "Good quality team jersey at a reasonable price. Ordered for our club and everyone is happy with them." },
+  ],
+  // Pro Grip Tape - Product ID: 11 / bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb
+  "11": [
+    { id: "11-1", user: "Tim H.", avatarColor: "bg-green-100 text-green-600", verified: true, date: "1 day ago", rating: 5, text: "Best grip tape I've used! Absorbs sweat really well and lasts longer than the Yonex AC102. Great value for money." },
+    { id: "11-2", user: "Xu Xiaoming", avatarColor: "bg-orange-100 text-orange-600", verified: true, date: "4 days ago", rating: 5, text: "吸汗效果非常好，手感舒适。性价比超高，已经回购多次了！" },
+  ],
+  "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb": [
+    { id: "uuidb-1", user: "Tim H.", avatarColor: "bg-green-100 text-green-600", verified: true, date: "1 day ago", rating: 5, text: "Best grip tape I've used! Absorbs sweat really well and lasts longer than the Yonex AC102. Great value for money." },
+    { id: "uuidb-2", user: "Xu Xiaoming", avatarColor: "bg-orange-100 text-orange-600", verified: true, date: "4 days ago", rating: 5, text: "吸汗效果非常好，手感舒适。性价比超高，已经回购多次了！" },
+  ],
+  // Victor P9200 Court Shoes - Product ID: 12 / cccccccc-cccc-cccc-cccc-cccccccccccc
+  "12": [
+    { id: "12-1", user: "Michelle T.", avatarColor: "bg-pink-100 text-pink-600", verified: true, date: "2 days ago", rating: 5, text: "Super lightweight and comfortable! The cushioning system is amazing - feels like walking on clouds. Great for all-day tournaments." },
+    { id: "12-2", user: "Wang Xiaoming", avatarColor: "bg-orange-100 text-orange-600", verified: true, date: "1 week ago", rating: 4, text: "威克多的鞋子做工精细，这款P9200缓震系统很出色。推荐！" },
+  ],
+  "cccccccc-cccc-cccc-cccc-cccccccccccc": [
+    { id: "uuidc-1", user: "Michelle T.", avatarColor: "bg-pink-100 text-pink-600", verified: true, date: "2 days ago", rating: 5, text: "Super lightweight and comfortable! The cushioning system is amazing - feels like walking on clouds. Great for all-day tournaments." },
+    { id: "uuidc-2", user: "Wang Xiaoming", avatarColor: "bg-orange-100 text-orange-600", verified: true, date: "1 week ago", rating: 4, text: "威克多的鞋子做工精细，这款P9200缓震系统很出色。推荐！" },
+  ],
+  // Pro Tournament Tee - Product ID: 13 / dddddddd-dddd-dddd-dddd-dddddddddddd
+  "13": [
+    { id: "13-1", user: "Karen W.", avatarColor: "bg-purple-100 text-purple-600", verified: true, date: "3 days ago", rating: 4, text: "Love the cooling technology! Stays dry even during intense matches. Fits well and looks professional." },
+    { id: "13-2", user: "Jason L.", avatarColor: "bg-blue-100 text-blue-600", verified: true, date: "2 weeks ago", rating: 4, text: "Comfortable match tee. The fabric is soft and breathable. Would recommend ordering your regular size." },
+  ],
+  "dddddddd-dddd-dddd-dddd-dddddddddddd": [
+    { id: "uuidd-1", user: "Karen W.", avatarColor: "bg-purple-100 text-purple-600", verified: true, date: "3 days ago", rating: 4, text: "Love the cooling technology! Stays dry even during intense matches. Fits well and looks professional." },
+    { id: "uuidd-2", user: "Jason L.", avatarColor: "bg-blue-100 text-blue-600", verified: true, date: "2 weeks ago", rating: 4, text: "Comfortable match tee. The fabric is soft and breathable. Would recommend ordering your regular size." },
+  ],
+};
 
-export const REVIEWS: Review[] = [
-  {
-    id: "1",
-    user: "John D.",
-    avatarColor: "bg-primary/20 text-primary",
-    verified: true,
-    date: "2 days ago",
-    rating: 5,
-    text: "Incredible power on smashes. The control is slightly tricky at first, but once you get used to it, it's a beast on the court. Highly recommend for singles players."
-  },
-  {
-    id: "2",
-    user: "Sarah L.",
-    avatarColor: "bg-purple-100 text-purple-600",
-    verified: true,
-    date: "1 week ago",
-    rating: 4,
-    text: "The racket feels amazing, very stiff and responsive. The paint job looks even better in person. Delivery was super fast too!"
-  },
-  {
-    id: "3",
-    user: "Mike K.",
-    avatarColor: "bg-green-100 text-green-600",
-    verified: true,
-    date: "2 weeks ago",
-    rating: 4.5,
-    text: "Upgrade from the Astrox 88D. Definitely feels heavier on the head but the smashes are noticeably more powerful. Great service from BadmintonPro."
-  }
-];
+// Legacy export for backwards compatibility
+export const REVIEWS: Review[] = PRODUCT_REVIEWS["1"] || [];
 
 export const ORDERS: Order[] = [
   { id: "#ORD-4023", date: "Oct 24, 2023", total: 89.00, status: "Shipped" },
